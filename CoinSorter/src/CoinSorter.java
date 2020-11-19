@@ -25,11 +25,11 @@ public class CoinSorter {
 		// allocates memory for coinList
 		coinList = new ArrayList<Integer>(); 
 		// add coin types to coinList
-		coinList.add(10);
-		coinList.add(20);
-		coinList.add(50);
-		coinList.add(100);
 		coinList.add(200);
+		coinList.add(100);
+		coinList.add(50);
+		coinList.add(20);
+		coinList.add(10);
 	}
 	
 	
@@ -71,20 +71,29 @@ public class CoinSorter {
 	
 	// method that loops over coinList element and prints them
 	public String printCoinList() {
-		System.out.println("The current coin denominations are in circulation: ");
+		
+		// use StringBuilder to create a string that will hold the output
+		StringBuilder output = new StringBuilder();
+		
+		output.append("The current coin denominations are in circulation: ");
+		// loop over elements in list and append them to output string
 		for (int element : coinList) {
-			System.out.print(element + ", ");
+			output.append(element + ", ");
 		}
-		System.out.println();
-		return coinList.toString();
+		
+		System.out.println(output);
+		return output.toString();
 	}
 	
 	
-	public String coinCalculator(int value, int coin) {
-		/* To check if type of coin inputed can be used,
-		 * we check if it's part of the coinList.
-		 */
-		if (coinList.contains(coin) == false) {
+	public String coinCalculator(int value, int coinType) {
+		
+		// use StringBuilder to create a string that will hold the output
+		StringBuilder output = new StringBuilder();
+		output.append("A total of ");
+		
+		// check if coinType is part of the coinList
+		if (coinList.contains(coinType) == false) {
 			System.out.println("Error! You may only enter available coins types: " + printCoinList());
 		}
 		
@@ -93,22 +102,17 @@ public class CoinSorter {
 			System.out.println("Error! Program only supports values between 0 and 10000.");
 		}
 		
-		else System.out.println("A total of " + value / coin + " x " + coin + "p coins can be exchanged, with a remainder of " + value % coin + "p.");
-		return String.format(value / coin + "  " + value % coin);
+		else {
+			output.append(value / coinType + " x " + coinType + "p coins can be exchanged, with a remainder of " + value % coinType + "p.");
+			System.out.println(output);
+		}
+		return output.toString();			
 	}
 	
 	
-	public void multiCoinCalculator(int value, int coinToExclude) {
-		if (coinList.contains(coinToExclude) == false) {
-			System.out.println("Error! You may only enter available coins types: 10p, 20p, 50p, 100p, 200p");
-		}
-		else if (value < minCoinIn || value > maxCoinIn) {
-			System.out.println("Error! Program only supports values between 0 and 10000.");
-		}
-		else 
-		}
-		
-		
+	
+	public String multiCoinCalculator(int value, int excludedCoinType) {
+
 	}
 	
 //	public boolean checkCoinType() {
