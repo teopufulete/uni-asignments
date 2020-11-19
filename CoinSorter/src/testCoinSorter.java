@@ -3,13 +3,15 @@ import java.util.Scanner;
 public class testCoinSorter {
 	
 	public static void main(String[] args) {
-		
+		// create instance of CoinSorter
 		CoinSorter sorter = new CoinSorter();
+		// use Scanner class to get user input
 		Scanner scanner = new Scanner(System.in);
 		int choice1 = 0;
 		
 	    
-	    do {
+		// prompts for user input until user exits
+	    do {// menu main body
 	    	System.out.println("~~~~~ Coin Sorter - Main Menu ~~~~~");
 			System.out.println("1 - Coin calculator");
 			System.out.println("2 - Multiple coin calculator");
@@ -20,8 +22,10 @@ public class testCoinSorter {
 			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			System.out.println("Enter number:");
 			
+			// user input
 			choice1 = scanner.nextInt();
-		
+	
+			//user input determines menu behaviour
 		    switch (choice1) {
 		    
 		        case 1:
@@ -45,6 +49,7 @@ public class testCoinSorter {
 		            break;
 		            
 		        case 4:
+		        	// sub-menu body
 		        	System.out.println("~~~~~ Set Details Sub-Menu ~~~~~");
 		        	System.out.println("1 - Set currency");
 		        	System.out.println("2 - Set minimum coin input value");
@@ -53,6 +58,7 @@ public class testCoinSorter {
 		        	System.out.println("4 - Return to main menu");
 					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 					System.out.println("Enter number:");
+					// new user input variable
 		        	int choice2 = scanner.nextInt();
 		        	switch (choice2) {
 		        	case 1:
@@ -70,7 +76,7 @@ public class testCoinSorter {
 			        	int maxCoinInput = scanner.nextInt();
 			            sorter.setMaxCoinIn(maxCoinInput);
 			            break;
-			        case 4:
+			        case 4: // returns to main menu
 			        	break;
 		        	}
 		            break;
@@ -84,6 +90,7 @@ public class testCoinSorter {
 		     } 
 	    } 
 	    while (choice1 != 6);
+	    // exits loop if user enters 6
         System.exit(1);
 	}
 }
