@@ -74,13 +74,12 @@ public class CoinSorter {
 		
 		// use StringBuilder to create a string that will hold the output
 		StringBuilder output = new StringBuilder();
-		
 		output.append("The current coin denominations are in circulation: ");
+		
 		// loop over elements in list and append them to output string
 		for (int element : coinList) {
 			output.append(element + ", ");
 		}
-		
 		System.out.println(output);
 		return output.toString();
 	}
@@ -112,16 +111,30 @@ public class CoinSorter {
 	
 	
 	public String multiCoinCalculator(int value, int excludedCoinType) {
-
+		StringBuilder output = new StringBuilder();
+		output.append("The coins exchanged are: ");
+		
+		if (coinList.contains(excludedCoinType) == false) {
+			System.out.println("Error! You may only enter available coins types: 10p, 20p, 50p, 100p, 200p");
+		}
+		else if (value < minCoinIn || value > maxCoinIn) {
+			System.out.println("Error! Program only supports values between 0 and 10000.");
+		}
+		
+		else for (int coin : coinList) {
+			if (excludedCoinType == coin) {
+				output.append(0 + " x " + coin + "p, ");
+			}
+			else {
+				output.append(value / coin + " x " + coin + "p, ");
+				value = value % coin;
+			}			
+		}
+		output.append("with a remainder of " + value + "p. ");
+		System.out.println(output);
+		return output.toString();
 	}
 	
-//	public boolean checkCoinType() {
-//		if (coinList.contains(coinn) == false) {
-//			System.out.println("Error! You may only enter available coins types: 10p, 20p, 50p, 100p, 200p");
-//			return false;
-//		}
-//		return true;
-//	}
 	
     // print program details
 	public void displayProgramConfigs() {
