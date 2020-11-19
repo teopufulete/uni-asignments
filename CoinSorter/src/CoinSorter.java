@@ -74,6 +74,7 @@ public class CoinSorter {
 		
 		// use StringBuilder to create a string that will hold the output
 		StringBuilder output = new StringBuilder();
+		// append the following message to output string
 		output.append("The current coin denominations are in circulation: ");
 		
 		// loop over elements in list and append them to output string
@@ -93,10 +94,10 @@ public class CoinSorter {
 		
 		// check if coinType is part of the coinList
 		if (coinList.contains(coinType) == false) {
-			System.out.println("Error! You may only enter available coins types: " + printCoinList());
+			System.out.println("Error! You may only enter available coins types! " + printCoinList());
 		}
 		
-		// check if value to be exchanged is between minCoinIn and maxCoinIn
+		// check if value is between minCoinIn and maxCoinIn
 		else if (value < minCoinIn || value > maxCoinIn) {
 			System.out.println("Error! Program only supports values between 0 and 10000.");
 		}
@@ -109,11 +110,11 @@ public class CoinSorter {
 	}
 	
 	
-	
 	public String multiCoinCalculator(int value, int excludedCoinType) {
 		StringBuilder output = new StringBuilder();
 		output.append("The coins exchanged are: ");
 		
+		// perform the same input checks as coinCalculator. Could add checker method
 		if (coinList.contains(excludedCoinType) == false) {
 			System.out.println("Error! You may only enter available coins types: 10p, 20p, 50p, 100p, 200p");
 		}
@@ -121,12 +122,16 @@ public class CoinSorter {
 			System.out.println("Error! Program only supports values between 0 and 10000.");
 		}
 		
+		// loop over the coins in coinList
 		else for (int coin : coinList) {
+			// for excluded coin don't perform any calculations 
 			if (excludedCoinType == coin) {
 				output.append(0 + " x " + coin + "p, ");
 			}
 			else {
+				// divide value by coin type and append result to string
 				output.append(value / coin + " x " + coin + "p, ");
+				// value is now the remainder of the division
 				value = value % coin;
 			}			
 		}
