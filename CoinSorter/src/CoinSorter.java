@@ -138,8 +138,8 @@ public class CoinSorter {
 	
     // print program details
 	public void displayProgramConfigs() {
-		System.out.println("Currency " + currency);
-		System.out.println("Minimum value accepted " + minCoinIn);
-		System.out.println("Maximum value accepted " + maxCoinIn);
+		System.out.println("Currency: " + currency);
+		System.out.println("Minimum value accepted: " + minCoinIn);
+		System.out.println("Maximum value accepted: " + maxCoinIn);
 	}
 }
