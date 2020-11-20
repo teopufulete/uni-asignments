@@ -65,20 +65,6 @@ public class CoinSorterGUI extends Application {
 //		 textBox.setSpacing(10);
 		 
 		 Label label = new Label(); 
-		 EventHandler<ActionEvent> event3 = new EventHandler<ActionEvent>() { 
-		     public void handle(ActionEvent e) { 
-		    	 label.setText(sorter.printCoinList());
-		     } 
-	      }; 
-	      button3.setOnAction(event3); 
-		
-	      EventHandler<ActionEvent> event5 = new EventHandler<ActionEvent>() { 
-			  public void handle(ActionEvent e) {
-				  label.setText("");
-				  label.setText("Currency: " +  sorter.getCurrency() + "\n" + "Minimum value accepted: " + sorter.getMinCoinIn() + "\n" + "Maximum value accepted: " + sorter.getMaxCoinIn());
-		  } 
-		 };
-		 
 		 
 		 EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() { 
 			 public void handle(ActionEvent e) {
@@ -110,18 +96,57 @@ public class CoinSorterGUI extends Application {
 				 label.setText(sorter.coinCalculator(amountIn, coinIn));
 			 }
 		 };
+		 
+		 EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() { 
+			 public void handle(ActionEvent e) {
+				 TextInputDialog dialog1 = new TextInputDialog();
+				 dialog1.setTitle("Enter values");
+				 dialog1.setHeaderText("Enter amount to be exhange");
+				 dialog1.setContentText("Amount:");
+				 
+				 TextInputDialog dialog2 = new TextInputDialog(); 
+				 dialog2.setTitle("Enter values");
+				 dialog2.setHeaderText("Enter coin you wish to exclude");
+				 dialog2.setContentText("Excluded Coin:");
+			     
+				 Optional<String> result1 = dialog1.showAndWait(); 
+				 result1.ifPresent(name -> {
+					 label.setText("Amount Entered: " + name);
+				 });
+				 
+				 Optional<String> result2 = dialog2.showAndWait();
+				 result2.ifPresent(name -> {
+					 label.setText("Coin type entered: " + name);
+				 });
+				 
+				 String input1 = result1.get();
+				 int amountIn = Integer.parseInt(input1);
+				
+				 String input2 = result2.get();
+				 int coinIn = Integer.parseInt(input2);
+				 label.setText(sorter.multiCoinCalculator(amountIn, coinIn));
+			 }
+		 };
+		 
+		 EventHandler<ActionEvent> event3 = new EventHandler<ActionEvent>() { 
+		     public void handle(ActionEvent e) { 
+		    	 label.setText(sorter.printCoinList());
+		     } 
+	      }; 
+		
+	      EventHandler<ActionEvent> event5 = new EventHandler<ActionEvent>() { 
+			  public void handle(ActionEvent e) {
+				  label.setText("");
+				  label.setText("Currency: " +  sorter.getCurrency() + "\n" + "Minimum value accepted: " + sorter.getMinCoinIn() + "\n" + "Maximum value accepted: " + sorter.getMaxCoinIn());
+		  } 
+		 };
 
  		 
 		 button1.setOnAction(event1);
+		 button2.setOnAction(event2);
 		 button3.setOnAction(event3);
 		 button5.setOnAction(event5); 
-		 button6.setOnAction(e -> Platform.exit()); 
-
-		     
-	    
-		 
-	 
-		 
+		 button6.setOnAction(e -> Platform.exit());    
 		 
 		 VBox root = new VBox(10); 
 		 root.setBackground(Background.EMPTY);         
