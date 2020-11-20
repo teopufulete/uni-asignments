@@ -83,12 +83,37 @@ public class CoinSorterGUI extends Application {
 		 
 		 EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() { 
 			 public void handle(ActionEvent e) {
-				 String input1 = textField.getText();
-				 int valueIn = Integer.parseInt(input1);
-				
-				 String input2 = textField2.getText();
-				 int coinIn = Integer.parseInt(input2);
-				 l.setText(sorter.coinCalculator(valueIn, coinIn));
+				 TextInputDialog dialog1 = new TextInputDialog();
+				 dialog1.setTitle("Enter values");
+				 dialog1.setHeaderText("Enter amount to be exhange");
+				 dialog1.setContentText("Amount:");
+				 
+				 TextInputDialog dialog2 = new TextInputDialog(); 
+				 dialog2.setTitle("Enter values");
+				 dialog2.setHeaderText("Enter coin type");
+				 dialog2.setContentText("Coin Type:");
+//				 DialogPane dialogPane = dialog.getDialogPane();
+//			     dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+//			     TextField amount = new TextField("Amount to be exchanged: ");
+//			     TextField coin = new TextField("Amount to be exchanged: ");
+//				 
+//			     dialogPane.setContent(new VBox(8, textField, amount, coin));
+			     
+				 Optional<String> result1 = dialog1.showAndWait(); 
+				 result1.ifPresent(name -> {
+				     l.setText(name);
+				 });
+				 
+				 Optional<String> result2 = dialog2.showAndWait();
+				 result2.ifPresent(name -> {
+				     l.setText(name);
+				 });
+//				 String input1 = amount.getText();
+//				 int amountIn = Integer.parseInt(input1);
+//				
+//				 String input2 = coin.getText();
+//				 int coinIn = Integer.parseInt(input2);
+//				 l.setText(sorter.coinCalculator(amountIn, coinIn));
 			 }
 		 };
 
@@ -117,7 +142,7 @@ public class CoinSorterGUI extends Application {
 		 stage.show();    
 	}
 	
-    
+	
 	public static void main(String[] args) {         
 		 launch(args);     
 	 }
