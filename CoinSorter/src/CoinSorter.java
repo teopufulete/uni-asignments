@@ -90,21 +90,25 @@ public class CoinSorter {
 		
 		// use StringBuilder to create a string that will hold the output
 		StringBuilder output = new StringBuilder();
-		output.append("A total of ");
+		output.append(" ");
 		
 		// check if coinType is part of the coinList
 		if (coinList.contains(coinType) == false) {
 			System.out.println("Error! You may only enter available coins types! " + printCoinList());
+			output.append("Error! You may only enter available coins types! " + printCoinList());
+			return output.toString();
 		}
 		
 		// check if value is between minCoinIn and maxCoinIn
 		else if (value < minCoinIn || value > maxCoinIn) {
 			System.out.println("Error! Program only supports values between 0 and 10000.");
+			output.append("Error! Program only supports values between 0 and 10000.");
 		}
 		
 		else {
-			output.append(value / coinType + " x " + coinType + "p coins can be exchanged, with a remainder of " + value % coinType + "p.");
+			output.append("A total of " + value / coinType + " x " + coinType + "p coins can be exchanged, with a remainder of " + value % coinType + "p.");
 			System.out.println(output);
+			return output.toString();
 		}
 		return output.toString();			
 	}
