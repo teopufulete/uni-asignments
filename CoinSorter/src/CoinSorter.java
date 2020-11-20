@@ -116,14 +116,16 @@ public class CoinSorter {
 	
 	public String multiCoinCalculator(int value, int excludedCoinType) {
 		StringBuilder output = new StringBuilder();
-		output.append("The coins exchanged are: ");
+		output.append(" ");
 		
 		// perform the same input checks as coinCalculator. Could add checker method
 		if (coinList.contains(excludedCoinType) == false) {
-			System.out.println("Error! You may only enter available coins types: 10p, 20p, 50p, 100p, 200p");
+			System.out.println("Error! " + printCoinList());
+			output.append("Error! " + printCoinList());
 		}
 		else if (value < minCoinIn || value > maxCoinIn) {
 			System.out.println("Error! Program only supports values between 0 and 10000.");
+			output.append("Error! Program only supports values between 0 and 10000.");
 		}
 		
 		// loop over the coins in coinList
@@ -134,12 +136,12 @@ public class CoinSorter {
 			}
 			else {
 				// divide value by coin type and append result to string
-				output.append(value / coin + " x " + coin + "p, ");
+				output.append("The coins exchanged are: " + value / coin + " x " + coin + "p, ");
 				// value is now the remainder of the division
 				value = value % coin;
 			}			
 		}
-		output.append("with a remainder of " + value + "p. ");
+		output.append("\n" + "with a remainder of " + value + "p. ");
 		System.out.println(output);
 		return output.toString();
 	}
