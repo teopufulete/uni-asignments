@@ -101,8 +101,8 @@ public class CoinSorter {
 		
 		// check if value is between minCoinIn and maxCoinIn
 		else if (value < minCoinIn || value > maxCoinIn) {
-			System.out.println("Error! Program only supports values between 0 and 10000.");
-			output.append("Error! Program only supports values between 0 and 10000.");
+			System.out.println("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
+			output.append("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
 		}
 		
 		else {
@@ -124,8 +124,8 @@ public class CoinSorter {
 			output.append("Error! " + printCoinList());
 		}
 		else if (value < minCoinIn || value > maxCoinIn) {
-			System.out.println("Error! Program only supports values between 0 and 10000.");
-			output.append("Error! Program only supports values between 0 and 10000.");
+			System.out.println("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
+			output.append("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
 		}
 		
 		// loop over the coins in coinList
