@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CoinSorter {
 	private String currency;
 	private int minCoinIn;
@@ -20,7 +21,6 @@ public class CoinSorter {
 		currency = "pounds"; 	
 		minCoinIn = 0;
 		maxCoinIn = 10000;
-		
 		// allocates memory for coinList
 		coinList = new ArrayList<Integer>(); 
 		// add coin types to coinList
@@ -94,20 +94,21 @@ public class CoinSorter {
 		// check if coinType is part of the coinList
 		if (coinList.contains(coinType) == false) {
 			System.out.println("Error! " + printCoinList());
+			// append exception to output
 			output.append("Error! " + printCoinList());
-			return output.toString();
 		}
 		
 		// check if value is between minCoinIn and maxCoinIn
 		else if (value < minCoinIn || value > maxCoinIn) {
 			System.out.println("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
+			// append exception to output
 			output.append("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
 		}
 		
 		else {
 			output.append("A total of " + value / coinType + " x " + coinType + "p coins can be exchanged, with a remainder of " + value % coinType + "p.");
 			System.out.println(output);
-			return output.toString();
+			
 		}
 		return output.toString();			
 	}
@@ -117,6 +118,10 @@ public class CoinSorter {
 		StringBuilder output = new StringBuilder();
 		output.append(" ");
 		
+		if (!(coinList.contains(excludedCoinType) == false) && !(value < minCoinIn || value > maxCoinIn)) {
+			output.append("The coins exchanged are: ");
+		}
+
 		// perform the same input checks as coinCalculator. Could add checker method
 		if (coinList.contains(excludedCoinType) == false) {
 			System.out.println("Error! " + printCoinList());
@@ -135,12 +140,16 @@ public class CoinSorter {
 			}
 			else {
 				// divide value by coin type and append result to string
-				output.append("The coins exchanged are: " + value / coin + " x " + coin + "p, ");
+				output.append(value / coin + " x " + coin + "p, ");
 				// value is now the remainder of the division
 				value = value % coin;
 			}			
 		}
-		output.append("\n" + "with a remainder of " + value + "p. ");
+		
+		if (!(coinList.contains(excludedCoinType) == false) && !(value < minCoinIn || value > maxCoinIn)) {
+			output.append("\n" + "with a remainder of " + value + "p. ");
+		}
+				
 		System.out.println(output);
 		return output.toString();
 	}
