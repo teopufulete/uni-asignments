@@ -94,8 +94,8 @@ public class CoinSorter {
 		
 		// check if coinType is part of the coinList
 		if (coinList.contains(coinType) == false) {
-			System.out.println("Error! You may only enter available coins types! " + printCoinList());
-			output.append("Error! You may only enter available coins types! " + printCoinList());
+			System.out.println("Error!" + printCoinList());
+			output.append("Error!" + printCoinList());
 			return output.toString();
 		}
 		
