@@ -116,7 +116,7 @@ public class CoinSorterGUI extends Application {
 				 
 				 Optional<String> result2 = dialog2.showAndWait();
 				 result2.ifPresent(name -> {
-					 label.setText("Coin type entered: " + name);
+					 label.setText("Coin to be excluded: " + name);
 				 });
 				 
 				 String input1 = result1.get();
@@ -134,6 +134,52 @@ public class CoinSorterGUI extends Application {
 		     } 
 	      }; 
 		
+	      EventHandler<ActionEvent> event4 = new EventHandler<ActionEvent>() { 
+				 public void handle(ActionEvent e) {
+					 TextInputDialog dialog1 = new TextInputDialog();
+					 dialog1.setTitle("Pick currency");
+					 dialog1.setHeaderText("Enter currency symbol: ");
+					 dialog1.setContentText("Symbol");
+					 
+					 TextInputDialog dialog2 = new TextInputDialog(); 
+					 dialog2.setTitle("Enter values");
+					 dialog2.setHeaderText("Set minimum value to be exchanged");
+					 dialog2.setContentText("Minimum value:");
+				     
+					 TextInputDialog dialog3 = new TextInputDialog(); 
+					 dialog3.setTitle("Enter values");
+					 dialog3.setHeaderText("Set maximum value to be exchanged");
+					 dialog3.setContentText("Maximum value:");
+					 
+					 Optional<String> result1 = dialog1.showAndWait(); 
+					 result1.ifPresent(name -> {
+						 label.setText("Currency set to: " + name);
+					 });
+					 
+					 Optional<String> result2 = dialog2.showAndWait();
+					 result2.ifPresent(name -> {
+						 label.setText("New minimum value set to: " + name);
+					 });
+					 
+					 Optional<String> result3 = dialog3.showAndWait(); 
+					 result1.ifPresent(name -> {
+						 label.setText("New maximum value set to: " + name);
+					 });
+					 
+					 String input1 = result1.get();
+					 sorter.setCurrency(input1);
+					 
+					 String input2 = result2.get();
+					 int minCoinInput = Integer.parseInt(input2);
+					 sorter.setMinCoinIn(minCoinInput);
+					 
+					 String input3 = result3.get();
+					 int maxCoinInput = Integer.parseInt(input3);
+					 sorter.setMaxCoinIn(maxCoinInput);
+					 label.setText("Currency set to: " + sorter.getCurrency() + "\n" + "New minimum value set to: " + sorter.getMinCoinIn() + "\n" + "New maximum value set to: " + sorter.getMaxCoinIn());
+				 }
+			 };
+	      
 	      EventHandler<ActionEvent> event5 = new EventHandler<ActionEvent>() { 
 			  public void handle(ActionEvent e) {
 				  label.setText("");
@@ -141,10 +187,10 @@ public class CoinSorterGUI extends Application {
 		  } 
 		 };
 
- 		 
 		 button1.setOnAction(event1);
 		 button2.setOnAction(event2);
 		 button3.setOnAction(event3);
+		 button4.setOnAction(event4);
 		 button5.setOnAction(event5); 
 		 button6.setOnAction(e -> Platform.exit());    
 		 
