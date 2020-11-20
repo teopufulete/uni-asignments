@@ -56,27 +56,26 @@ public class CoinSorterGUI extends Application {
 		 buttonBox.getChildren().addAll(button1, button2, button3, button4, button5, button6);
 		 
 		 
+//		 Label label = new Label("Enter value:");
+//		 TextField textField = new TextField ();
+//		 TextField textField2 = new TextField ();
+//		 HBox textBox = new HBox();
+//		 textBox.setAlignment(Pos.CENTER);
+//		 textBox.getChildren().addAll(label, textField, textField2);
+//		 textBox.setSpacing(10);
 		 
-		 Label label = new Label("Enter value:");
-		 TextField textField = new TextField ();
-		 TextField textField2 = new TextField ();
-		 HBox textBox = new HBox();
-		 textBox.setAlignment(Pos.CENTER);
-		 textBox.getChildren().addAll(label, textField, textField2);
-		 textBox.setSpacing(10);
-		 
-		 Label l = new Label(); 
+		 Label label = new Label(); 
 		 EventHandler<ActionEvent> event3 = new EventHandler<ActionEvent>() { 
 		     public void handle(ActionEvent e) { 
-		    	 l.setText(sorter.printCoinList());
+		    	 label.setText(sorter.printCoinList());
 		     } 
 	      }; 
 	      button3.setOnAction(event3); 
 		
 	      EventHandler<ActionEvent> event5 = new EventHandler<ActionEvent>() { 
 			  public void handle(ActionEvent e) {
-				 l.setText("");
-			   	 l.setText("Currency: " +  sorter.getCurrency() + "\n" + "Minimum value accepted: " + sorter.getMinCoinIn() + "\n" + "Maximum value accepted: " + sorter.getMaxCoinIn());
+				  label.setText("");
+				  label.setText("Currency: " +  sorter.getCurrency() + "\n" + "Minimum value accepted: " + sorter.getMinCoinIn() + "\n" + "Maximum value accepted: " + sorter.getMaxCoinIn());
 		  } 
 		 };
 		 
@@ -92,28 +91,23 @@ public class CoinSorterGUI extends Application {
 				 dialog2.setTitle("Enter values");
 				 dialog2.setHeaderText("Enter coin type");
 				 dialog2.setContentText("Coin Type:");
-//				 DialogPane dialogPane = dialog.getDialogPane();
-//			     dialogPane.getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
-//			     TextField amount = new TextField("Amount to be exchanged: ");
-//			     TextField coin = new TextField("Amount to be exchanged: ");
-//				 
-//			     dialogPane.setContent(new VBox(8, textField, amount, coin));
 			     
 				 Optional<String> result1 = dialog1.showAndWait(); 
 				 result1.ifPresent(name -> {
-				     l.setText(name);
+					 label.setText("Amount Entered: " + name);
 				 });
 				 
 				 Optional<String> result2 = dialog2.showAndWait();
 				 result2.ifPresent(name -> {
-				     l.setText(name);
+					 label.setText("Coin type entered: " + name);
 				 });
-//				 String input1 = amount.getText();
-//				 int amountIn = Integer.parseInt(input1);
-//				
-//				 String input2 = coin.getText();
-//				 int coinIn = Integer.parseInt(input2);
-//				 l.setText(sorter.coinCalculator(amountIn, coinIn));
+				 
+				 String input1 = result1.get();
+				 int amountIn = Integer.parseInt(input1);
+				
+				 String input2 = result2.get();
+				 int coinIn = Integer.parseInt(input2);
+				 label.setText(sorter.coinCalculator(amountIn, coinIn));
 			 }
 		 };
 
@@ -132,7 +126,7 @@ public class CoinSorterGUI extends Application {
 		 VBox root = new VBox(10); 
 		 root.setBackground(Background.EMPTY);         
 		 root.setAlignment(Pos.CENTER);
-		 root.getChildren().addAll(titleBox, buttonBox, textBox, l);
+		 root.getChildren().addAll(titleBox, buttonBox, label);
 		 
 		 Scene scene = new Scene(root, 450, 400, Color.PINK);
 		 stage.setScene(scene);         
