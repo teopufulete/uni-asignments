@@ -5,10 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -44,15 +42,7 @@ public class CoinSorterGUI extends Application {
 		 VBox buttonBox = new VBox(10);         
 		 buttonBox.setAlignment(Pos.CENTER); 
 		 buttonBox.getChildren().addAll(button1, button2, button3, button4, button5, button6);
-		 
-		 
-//		 Label label = new Label("Enter value:");
-//		 TextField textField = new TextField ();
-//		 TextField textField2 = new TextField ();
-//		 HBox textBox = new HBox();
-//		 textBox.setAlignment(Pos.CENTER);
-//		 textBox.getChildren().addAll(label, textField, textField2);
-//		 textBox.setSpacing(10);
+		 	 
 		 
 		 Label label = new Label(); 
 		 
