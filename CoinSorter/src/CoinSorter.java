@@ -92,25 +92,26 @@ public class CoinSorter {
 		output.append(" ");
 		
 		// check if coinType is part of the coinList
-		if (coinList.contains(coinType) == false) {
-			System.out.println("Error! " + printCoinList());
+		if (!coinList.contains(coinType)) {
 			// append exception to output
 			output.append("Error! " + printCoinList());
+			System.out.println(output.toString());
+			return output.toString();
 		}
 		
 		// check if value is between minCoinIn and maxCoinIn
 		else if (value < minCoinIn || value > maxCoinIn) {
-			System.out.println("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
 			// append exception to output
 			output.append("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
+			System.out.println(output.toString());
+			return output.toString();
 		}
 		
 		else {
 			output.append("A total of " + value / coinType + " x " + coinType + "p coins can be exchanged, with a remainder of " + value % coinType + "p.");
-			System.out.println(output);
-			
-		}
-		return output.toString();			
+			System.out.println(output.toString());
+			return output.toString();
+		}		
 	}
 	
 	
@@ -118,18 +119,23 @@ public class CoinSorter {
 		StringBuilder output = new StringBuilder();
 		output.append(" ");
 		
-		if (!(coinList.contains(excludedCoinType) == false) && !(value < minCoinIn || value > maxCoinIn)) {
+		if ((coinList.contains(excludedCoinType) == true) && !(value < minCoinIn || value > maxCoinIn)) {
 			output.append("The coins exchanged are: ");
+			System.out.println(output.toString());
+			return output.toString();
 		}
 
 		// perform the same input checks as coinCalculator. Could add checker method
-		if (coinList.contains(excludedCoinType) == false) {
-			System.out.println("Error! " + printCoinList());
+		if (!coinList.contains(excludedCoinType)) {
 			output.append("Error! " + printCoinList());
+			System.out.println(output.toString());
+			return output.toString();
 		}
+		
 		else if (value < minCoinIn || value > maxCoinIn) {
-			System.out.println("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
 			output.append("Error! Program only supports values between " + getMinCoinIn() + " and " + getMaxCoinIn());
+			System.out.println(output.toString());
+			return output.toString();
 		}
 		
 		// loop over the coins in coinList

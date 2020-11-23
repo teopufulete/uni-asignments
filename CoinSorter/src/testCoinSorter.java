@@ -54,7 +54,6 @@ public class testCoinSorter {
 		        	System.out.println("1 - Set currency");
 		        	System.out.println("2 - Set minimum coin input value");
 		        	System.out.println("3 - Set maximum coin input value");
-		        	System.out.println("3 - Set maximum coin input value");
 		        	System.out.println("4 - Return to main menu");
 					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 					System.out.println("Enter number:");
