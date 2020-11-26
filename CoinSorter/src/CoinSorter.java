@@ -121,8 +121,6 @@ public class CoinSorter {
 		
 		if ((coinList.contains(excludedCoinType) == true) && !(value < minCoinIn || value > maxCoinIn)) {
 			output.append("The coins exchanged are: ");
-			System.out.println(output.toString());
-			return output.toString();
 		}
 
 		// perform the same input checks as coinCalculator. Could add checker method
